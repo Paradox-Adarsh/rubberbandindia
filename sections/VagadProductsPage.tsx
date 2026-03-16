@@ -203,7 +203,7 @@ function ProductCard({ product, index }: { product: typeof PRODUCTS[0]; index: n
           className="mt-4 flex items-center justify-center gap-2 py-2.5 rounded-lg
             text-sm font-bold tracking-wide text-white transition-colors duration-200"
           style={{ backgroundColor: "#E8008A" }}
-          whileHover={{ backgroundColor: "#C4006E" } as object}
+          // whileHover={{ backgroundColor: "#C4006E" } as object}
         >
           Get a Quote
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
@@ -454,7 +454,7 @@ export default function VagadProductsPage() {
               className="inline-flex items-center gap-2 px-5 py-3 rounded-lg
                 text-sm font-bold text-white whitespace-nowrap"
               style={{ backgroundColor: "#E8008A", fontFamily: FONT }}
-              whileHover={{ backgroundColor: "#C4006E" } as object}
+              // whileHover={{ backgroundColor: "#C4006E" } as object}
             >
               Contact for Pricing
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none"

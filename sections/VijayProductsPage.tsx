@@ -200,7 +200,7 @@ function ProductCard({ product, index }: { product: typeof PRODUCTS[0]; index: n
           className="mt-4 flex items-center justify-center gap-2 py-2.5 rounded-lg
             text-sm font-bold tracking-wide text-white transition-colors duration-200"
           style={{ backgroundColor: "#AA1E15" }}
-          whileHover={{ backgroundColor: "#C4261C" } as object}
+          // whileHover={{ backgroundColor: "#C4261C" } as object}
         >
           Get a Quote
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
@@ -435,7 +435,7 @@ export default function VijayProductsPage() {
               className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-bold
                 text-white whitespace-nowrap"
               style={{ backgroundColor: "#AA1E15" }}
-              whileHover={{ backgroundColor: "#C4261C" } as object}
+              // whileHover={{ backgroundColor: "#C4261C" } as object}
             >
               Contact for Pricing
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
