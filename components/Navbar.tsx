@@ -1,0 +1,418 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { springHover } from "@/lib/motions";
+
+/* ─── Nav link data ──────────────────────────────────────────────────── */
+const NAV_LINKS = [
+  { href: "/", label: "Home" },
+  { href: "/products", label: "Products" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+];
+
+/* ─── Logo mark ──────────────────────────────────────────────────────── */
+function LogoMark() {
+  return (
+    <motion.div
+      animate={{ rotate: [0, 4, -4, 0] }}
+      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      className="w-9 h-9 flex-shrink-0"
+    >
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="20" cy="20" rx="17" ry="10" stroke="#AA1E15" strokeWidth="3.5" fill="none" />
+        <ellipse cx="20" cy="20" rx="17" ry="10" stroke="#C4261C" strokeWidth="1.5" fill="none"
+          strokeDasharray="4 3" opacity="0.5" />
+        <ellipse cx="20" cy="20" rx="10" ry="5.5" stroke="#AA1E15" strokeWidth="2" fill="none" opacity="0.35" />
+      </svg>
+    </motion.div>
+  );
+}
+
+/* ─── Desktop Nav Link ───────────────────────────────────────────────── */
+function DesktopLink({ href, label, isActive }: { href: string; label: string; isActive: boolean }) {
+  return (
+    <Link href={href} className="no-underline">
+      <motion.div
+        {...springHover}
+        className={`relative px-1 py-1.5 cursor-pointer text-[15px] tracking-[0.01em] font-arial
+          ${isActive ? "font-bold text-[#AA1E15]" : "font-medium text-[#1A1A1A]"}`}
+        style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+      >
+        {label}
+        {/* Active underline */}
+        <motion.span
+          initial={false}
+          animate={{ scaleX: isActive ? 1 : 0, opacity: isActive ? 1 : 0 }}
+          transition={{ type: "spring", stiffness: 300, damping: 28 }}
+          className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#AA1E15] rounded-sm origin-left"
+        />
+        {/* Hover underline */}
+        {!isActive && (
+          <motion.span
+            initial={{ scaleX: 0 }}
+            whileHover={{ scaleX: 1 }}
+            transition={{ duration: 0.2 }}
+            className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#AA1E15] rounded-sm origin-left opacity-40"
+          />
+        )}
+      </motion.div>
+    </Link>
+  );
+}
+
+/* ─── Cart Button ────────────────────────────────────────────────────── */
+function CartBtn({ count }: { count: number }) {
+  return (
+    <motion.button
+      {...springHover}
+      aria-label={`Cart — ${count} items`}
+      className="relative w-[38px] h-[38px] rounded-full border border-[#D4CFC8] bg-transparent
+        flex items-center justify-center cursor-pointer text-[#1A1A1A]"
+    >
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" strokeWidth="2"
+        strokeLinecap="round" strokeLinejoin="round" stroke="currentColor">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <path d="M16 10a4 4 0 01-8 0" />
+      </svg>
+      {count > 0 && (
+        <motion.span
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          className="absolute -top-1 -right-1 w-[17px] h-[17px] rounded-full bg-[#AA1E15]
+            text-white text-[10px] font-bold flex items-center justify-center"
+          style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+        >
+          {count}
+        </motion.span>
+      )}
+    </motion.button>
+  );
+}
+
+/* ─── Hamburger ──────────────────────────────────────────────────────── */
+function Hamburger({ open, onClick }: { open: boolean; onClick: () => void }) {
+  return (
+    <motion.button
+      onClick={onClick}
+      aria-label={open ? "Close menu" : "Open menu"}
+      aria-expanded={open}
+      className={`w-[38px] h-[38px] rounded-lg border border-[#D4CFC8] flex flex-col
+        items-center justify-center gap-[5px] cursor-pointer p-0 transition-colors duration-200
+        ${open ? "bg-[rgba(170,30,21,0.07)]" : "bg-transparent"}`}
+    >
+      {[0, 1, 2].map((i) => (
+        <motion.span
+          key={i}
+          animate={
+            open
+              ? i === 0 ? { rotate: 45, y: 10, width: 18 }
+              : i === 2 ? { rotate: -45, y: -10, width: 18 }
+              : { opacity: 0, width: 0 }
+              : { rotate: 0, y: 0, opacity: 1, width: i === 1 ? 12 : 18 }
+          }
+          transition={{ duration: 0.25, ease: "easeInOut" }}
+          className="block h-0.5 rounded-sm bg-[#1A1A1A] origin-center"
+        />
+      ))}
+    </motion.button>
+  );
+}
+
+/* ─── Mobile Drawer ──────────────────────────────────────────────────── */
+function MobileDrawer({
+  open, pathname, cartCount, onClose,
+}: {
+  open: boolean; pathname: string; cartCount: number; onClose: () => void;
+}) {
+  return (
+    <AnimatePresence>
+      {open && (
+        <>
+          {/* Backdrop */}
+          <motion.div
+            key="backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={onClose}
+            className="fixed inset-0 bg-[rgba(26,26,26,0.35)] z-40 backdrop-blur-sm"
+          />
+
+          {/* Drawer panel */}
+          <motion.div
+            key="drawer"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", stiffness: 320, damping: 34 }}
+            className="fixed top-0 right-0 bottom-0 w-[280px] bg-[#EDE8DF] z-50
+              flex flex-col shadow-[-4px_0_24px_rgba(0,0,0,0.1)]"
+            style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-[#D4CFC8]">
+              <div className="flex items-center gap-2.5">
+                <LogoMark />
+                <div>
+                  <p className="text-[13px] font-extrabold text-[#1A1A1A] m-0 leading-tight">
+                    GHANSHYAM
+                  </p>
+                  <p className="text-[10px] text-[#9B9590] m-0 tracking-[0.08em]">
+                    ENTERPRISES
+                  </p>
+                </div>
+              </div>
+              <motion.button
+                {...springHover}
+                onClick={onClose}
+                aria-label="Close menu"
+                className="w-8 h-8 rounded-full border border-[#D4CFC8] bg-transparent cursor-pointer
+                  flex items-center justify-center text-[#4A4540]"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" strokeWidth="2.5">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </motion.button>
+            </div>
+
+            {/* Links */}
+            <nav className="flex-1 py-3 overflow-y-auto">
+              {NAV_LINKS.map((link, i) => {
+                const isActive = pathname === link.href;
+                return (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.06 + 0.1, duration: 0.3 }}
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={onClose}
+                      className={`flex items-center justify-between px-6 py-3.5 text-[15px]
+                        no-underline transition-colors duration-150
+                        ${isActive
+                          ? "font-bold text-[#AA1E15] border-l-[3px] border-[#AA1E15] bg-[rgba(170,30,21,0.05)]"
+                          : "font-medium text-[#1A1A1A] border-l-[3px] border-transparent"
+                        }`}
+                      style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+                    >
+                      {link.label}
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke={isActive ? "#AA1E15" : "#C4BFB8"} strokeWidth="2">
+                        <path d="M9 18l6-6-6-6" />
+                      </svg>
+                    </Link>
+                  </motion.div>
+                );
+              })}
+            </nav>
+
+            {/* Footer */}
+            <div className="px-6 pt-4 pb-6 border-t border-[#D4CFC8] flex flex-col gap-2.5">
+              <Link
+                href="/quote"
+                onClick={onClose}
+                className="block text-center py-[11px] bg-[#AA1E15] text-white rounded-md
+                  text-sm font-bold no-underline tracking-[0.03em]"
+                style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+              >
+                Get a Quote →
+              </Link>
+              <p className="text-center text-[11px] text-[#9B9590] m-0"
+                style={{ fontFamily: "Arial, Helvetica, sans-serif" }}>
+                🛍 {cartCount} items in cart · Trusted since 2001
+              </p>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+}
+
+/* ─── Scroll Progress ────────────────────────────────────────────────── */
+function ScrollProgress() {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  return (
+    <motion.div
+      style={{ scaleX, transformOrigin: "left" }}
+      className="h-0.5 bg-[#AA1E15] opacity-35"
+    />
+  );
+}
+
+/* ─── Main Navbar ────────────────────────────────────────────────────── */
+export default function Navbar() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [cartCount] = useState(3);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 48);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => { setMobileOpen(false); }, [pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
+
+  return (
+    <>
+      {/* ── Top red stripe ── */}
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        className="h-[3px] sticky top-0 z-60 origin-left"
+        style={{ background: "linear-gradient(90deg, #AA1E15, #C4261C 50%, #AA1E15)" }}
+      />
+
+      {/* ── Nav ── */}
+      <motion.nav
+        initial={{ y: -8, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.45, ease: "easeOut", delay: 0.1 }}
+        role="navigation"
+        aria-label="Main navigation"
+        className={`sticky top-[3px] z-[55] transition-all duration-300
+          ${scrolled
+            ? "bg-white border-b border-[#E8E4E0] shadow-[0_2px_16px_rgba(0,0,0,0.07)]"
+            : "bg-[#EDE8DF] border-b border-[#D4CFC8] shadow-none"
+          }`}
+        style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+      >
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-6">
+
+          {/* ── Brand ── */}
+          <Link href="/" className="no-underline flex items-center gap-2.5 flex-shrink-0">
+            <LogoMark />
+            <div>
+              <motion.p
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2, duration: 0.4 }}
+                className="m-0 text-[13px] sm:text-[15px] font-extrabold text-[#1A1A1A]
+                  tracking-[0.04em] leading-tight"
+                style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+              >
+                RubberBands{" "}
+                <span className="text-[#AA1E15]">India</span>
+              </motion.p>
+              <p className="m-0 text-[9px] sm:text-[10px] text-[#9B9590] tracking-[0.12em]"
+                style={{ fontFamily: "Arial, Helvetica, sans-serif" }}>
+                Rubber Bands · Since 2001
+              </p>
+            </div>
+          </Link>
+
+          {/* ── Desktop links — hidden below md ── */}
+          <motion.ul
+            initial="hidden"
+            animate="show"
+            variants={{
+              hidden: {},
+              show: { transition: { staggerChildren: 0.07, delayChildren: 0.25 } },
+            }}
+            role="list"
+            className="hidden md:flex items-center gap-5 lg:gap-7 list-none m-0 p-0"
+          >
+            {NAV_LINKS.map((link) => (
+              <motion.li
+                key={link.href}
+                variants={{
+                  hidden: { opacity: 0, y: -6 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+                }}
+              >
+                <DesktopLink href={link.href} label={link.label} isActive={pathname === link.href} />
+              </motion.li>
+            ))}
+          </motion.ul>
+
+          {/* ── Right cluster ── */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.4 }}
+            className="flex items-center gap-2 sm:gap-2.5"
+          >
+            {/* Search pill — lg+ only */}
+            <motion.div
+              {...springHover}
+              role="search"
+              tabIndex={0}
+              aria-label="Search"
+              className={`hidden lg:flex items-center gap-1.5 px-3.5 py-[7px] rounded-full
+                border border-[#D4CFC8] cursor-pointer transition-colors duration-200
+                ${scrolled ? "bg-[#F7F5F2]" : "bg-white/60"}`}
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" stroke="#4A4540">
+                <circle cx="11" cy="11" r="7" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+              <span className="text-[13px] text-[#9B9590]"
+                style={{ fontFamily: "Arial, Helvetica, sans-serif" }}>
+                Search…
+              </span>
+            </motion.div>
+
+            {/* Quote CTA — hidden on xs, shown sm+ */}
+            <motion.div className="hidden sm:block" {...springHover}>
+              <Link
+                href="/quote"
+                className="inline-flex items-center gap-1.5 px-3.5 sm:px-[18px] py-2
+                  bg-[#AA1E15] text-white rounded-md text-[12px] sm:text-[13px] font-bold
+                  no-underline tracking-[0.03em] whitespace-nowrap
+                  hover:bg-[#C4261C] transition-colors duration-200"
+                style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+              >
+                <span className="hidden sm:inline">Download Catalogue</span>
+                <span className="sm:hidden">Quote</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" strokeWidth="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </motion.div>
+
+            {/* Cart */}
+            <CartBtn count={cartCount} />
+
+            {/* Hamburger — md and below */}
+            <div className="flex md:hidden">
+              <Hamburger open={mobileOpen} onClick={() => setMobileOpen((p) => !p)} />
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Scroll progress */}
+        <ScrollProgress />
+      </motion.nav>
+
+      {/* Mobile Drawer */}
+      <MobileDrawer
+        open={mobileOpen}
+        pathname={pathname}
+        cartCount={cartCount}
+        onClose={() => setMobileOpen(false)}
+      />
+    </>
+  );
+}

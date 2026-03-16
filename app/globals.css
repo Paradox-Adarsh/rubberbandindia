@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F6F2EB;
+  --foreground: #171717;
+}
+
+@theme inline {
+
+
+
+
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+    --font-poppins: var(--font-poppins);
+  --font-montserrat: var(--font-montserrat);
+
+--color-rb-violet: #392D93;
+--color-rb-indigo: #1E1560;
+--color-rb-cyan:   #00F5FF;
+--color-rb-lime:   #B8FF3C;
+--color-rb-pink:   #FF3CAC;
+--color-rb-white:  #F0EDFF;
+--color-rb-muted:  #9B93D4;
+
+  /* --color-base: #facbc8; */
+  --color-fore:#AA1E15;
+  --color-forestgreen:#2E6F40;
+  --color-steelblue:#4682B4;
+  --color-charcoal:#4A4A4A;
+  --color-cream:#FDFBD4;
+  --color-teal:#069494;
+  --color-wix-blue:#EDFCFA;
+  --color-wix-purple:#D6DCF6;
+  --color-logo-blue:#070E22;
+
+  /* ============================= */
+  /* Contrasting Citrus Palette */
+  /* ============================= */
+
+  
+
+
+  --color-citrus-primary-yellow: #E6FF00;
+  
+  --color-citrus-secondary-orange: #FF9800;
+  --color-citrus-accent-blue: #137DC5;
+  --color-citrus-bg-white: #FFFFFF;
+  --color-citrus-bg-cream: #FFF7E6;
+
+  /* ============================= */
+  /* Electric Pop Palette */
+  /* ============================= */
+  --color-electric-primary-pink: #FF4081;
+  --color-electric-secondary-lime: #AEEA00;
+  --color-electric-accent-purple: #673AB7;
+  --color-electric-bg-gray: #F2F2F2;
+  --color-electric-bg-neutral: #FAFAFA;
+
+  /* ============================= */
+  /* Earthy Warmth Palette */
+  /* ============================= */
+  --color-earth-primary-mocha: #937B72;
+  --color-earth-secondary-dill-green: #6F7E6B;
+  --color-earth-accent-rose: #C48A8A;
+  --color-earth-accent-terracotta: #C96A4A;
+  --color-earth-bg-alpine-oat: #EFE9E4;
+  --color-earth-bg-bisque-beige: #F5E6D3;
+
+  /* ============================= */
+  /* Sea to Sky Palette */
+  /* ============================= */
+  --color-sea-primary-midnight-blue: #112D4E;
+  --color-sea-secondary-aquamarine: #00CFC8;
+  --color-sea-secondary-ocean-blue: #1BA6C9;
+  --color-sea-accent-sunny-yellow: #FACF39;
+  --color-sea-bg-buttercream: #FFF3CC;
+  --color-sea-bg-cream: #FFF8EC;
+
+
+  /* Fonts */
+  --font-poppins: 'Poppins', sans-serif;
+  --font-montserrat: 'Montserrat', sans-serif;
+
+
+
+
+    --gradient-brand-red: linear-gradient(
+    135deg,
+    #E03A2F 100%,
+    #AD1F16 50%,
+    #5C0F0B 0%
+  );
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.flip-container {
+  perspective: 1000px;
+}
+
+.flip-logo {
+  transform-style: preserve-3d;
+  animation: flipY 0.5s ease-in-out infinite;
+}
+
+@keyframes flipY {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes badgePop {
+  from { transform: scale(0); }
+  to   { transform: scale(1); }
+}
