@@ -32,25 +32,25 @@ interface GalleryImage {
 
 const IMAGES: GalleryImage[] = [
   // ── Replace src with your actual image imports ──
-  { id: 1,  src: "/assets/images/gallery/vijay_multicoloured.png", name: "Vijay Mixed Colour Pack", desc: "Single, double colour and nylon bands — 1kg assorted pack", category: "Vijay", tag: "Bestseller", wide: true },
-  { id: 2,  src: "/assets/images/gallery/vagad_premium.png", name: "Vagad Premium Bands", desc: "Premium quality Vagad bands in vibrant colours", category: "Vagad", tag: "Premium", tagColor: "#E8008A" },
-  { id: 3,  src: "/assets/images/gallery/vijaydisco.png", name: "Fluorescent Disco Nylon", desc: "High-visibility neon bands for retail and packaging", category: "Fluorescent", tag: "Vibrant", tagColor: "#FF6D00" },
-  { id: 4,  src: "/assets/images/gallery/vijaypattiflat.png", name: "Vijay patti flat band", desc: "Standard 1kg bulk pack — ideal for wholesalers", category: "Bulk", tag: "Bulk", wide: false },
-  { id: 5,  src: "/assets/images/gallery/vijaysc.jpg", name: "Vagad SC Assorted", desc: "Multi-colour assorted rubber bands by Vagad", category: "Coloured", tag: "Coloured", tagColor: "#E8008A" },
-  { id: 6,  src: "/assets/images/gallery/vijay_central.png", name: "Vijay Centre Line Double", desc: "Classic centre-line double colour signature band", category: "Vijay", tag: "Classic", wide: true },
-  { id: 7,  src: "/assets/images/gallery/vagad4k.jpg", name: "Industrial Heavy Duty 4\"", desc: "Extra-thick bands for warehousing and industrial use", category: "Industrial", tag: "Industrial", tagColor: "#1A3A8F", tall: true },
-  { id: 8,  src: "/assets/images/gallery/vagadmini.png", name: "Vagad mini ½\" Bands ", desc: "Fine-grade mini bands for currency and postal use", category: "Vagad", tag: "Mini Size", tagColor: "#E8008A" },
-  { id: 9,  src: "/assets/images/gallery/vijay_sc.jpg", name: "Vijay Mini 1½\" Bands", desc: "Fine-grade mini bands for currency and postal use", category: "Vijay", tag: "Mini Size" },
-  { id: 10, src: "/assets/images/gallery/green.png", name: "Fluorescent Green Bands", desc: "Bright lime-green fluorescent nylon rubber bands", category: "Fluorescent", tag: "Neon", tagColor: "#2E7D32" },
-  { id: 11, src: "/assets/images/gallery/Vijay5kg.png", name: "Vijay 5kg Wholesale Pack", desc: "5kg bulk wholesale packing for distributors", category: "Bulk", tag: "Wholesale", wide: true },
-  { id: 12, src: "/assets/images/gallery/vagad3k.jpg", name: "Vagad 3\"Industrial Heavy", desc: "Heavy-duty Vagad bands for industrial applications", category: "Industrial", tag: "Industrial", tagColor: "#1A3A8F" },
-  { id: 13, src: "/assets/images/gallery/assorted.jpg", name: "Coloured Assorted 100g", desc: "100g assorted coloured bands — retail ready", category: "Coloured", tag: "Retail" },
-  { id: 14, src: "/assets/images/gallery/vagad_red.png", name: "Vagad Red Colour Bands", desc: "Classic red single-colour Vagad rubber bands", category: "Vagad", tag: "Single Colour" ,tagColor: "#E8008A"},
-  { id: 15, src: "/assets/images/gallery/vijay4k.png", name: "Vagad 4\" Bulk", desc: "Largest bulk pack — best price per kg", category: "Bulk", tag: "Best Value", tagColor: "#E8008A", wide: true },
-  { id: 16, src: "/assets/images/gallery/vijay_nylon.png", name: "Fluorescent Nylon", desc: "Hot neon nylon bands — standout packaging", category: "Fluorescent", tag: "Neon", tagColor: "#E8008A" },
-  { id: 17, src: "/assets/images/gallery/vijay_disco_black.png", name: "Vijay Disco Black Bands", desc: "Bright yellow standard bands by Vijay", category: "Vijay", tag: "Single Colour" },
-  { id: 18, src: "/assets/images/gallery/vagad_assorted.jpg", name: "Vagad Assorted Coloured", desc: "Full-range assorted colour pack by Vagad", category: "Coloured", tag: "Assorted", tagColor: "#E8008A" },
-];
+  { id: 1,  src: "/assets/Images/gallery/vijay_multicoloured.png", name: "Vijay Mixed Colour Pack", desc: "Single, double colour and nylon bands — 1kg assorted pack", category: "Vijay", tag: "Bestseller", wide: true },
+  { id: 2,  src: "/assets/Images/gallery/vagad_premium.png", name: "Vagad Premium Bands", desc: "Premium quality Vagad bands in vibrant colours", category: "Vagad", tag: "Premium", tagColor: "#E8008A" },
+  { id: 3,  src: "/assets/Images/gallery/vijaydisco.png", name: "Fluorescent Disco Nylon", desc: "High-visibility neon bands for retail and packaging", category: "Fluorescent", tag: "Vibrant", tagColor: "#FF6D00" },
+  { id: 4,  src: "/assets/Images/gallery/vijaypattiflat.png", name: "Vijay patti flat band", desc: "Standard 1kg bulk pack — ideal for wholesalers", category: "Bulk", tag: "Bulk", wide: false },
+  { id: 5,  src: "/assets/Images/gallery/vijaysc.jpg", name: "Vagad SC Assorted", desc: "Multi-colour assorted rubber bands by Vagad", category: "Coloured", tag: "Coloured", tagColor: "#E8008A" },
+  { id: 6,  src: "/assets/Images/gallery/vijay_central.png", name: "Vijay Centre Line Double", desc: "Classic centre-line double colour signature band", category: "Vijay", tag: "Classic", wide: true },
+  { id: 7,  src: "/assets/Images/gallery/vagad4k.jpg", name: "Industrial Heavy Duty 4\"", desc: "Extra-thick bands for warehousing and industrial use", category: "Industrial", tag: "Industrial", tagColor: "#1A3A8F", tall: true },
+  { id: 8,  src: "/assets/Images/gallery/vagadmini.png", name: "Vagad mini ½\" Bands ", desc: "Fine-grade mini bands for currency and postal use", category: "Vagad", tag: "Mini Size", tagColor: "#E8008A" },
+  { id: 9,  src: "/assets/Images/gallery/vijay_sc.jpg", name: "Vijay Mini 1½\" Bands", desc: "Fine-grade mini bands for currency and postal use", category: "Vijay", tag: "Mini Size" },
+  { id: 10, src: "/assets/Images/gallery/green.png", name: "Fluorescent Green Bands", desc: "Bright lime-green fluorescent nylon rubber bands", category: "Fluorescent", tag: "Neon", tagColor: "#2E7D32" },
+  { id: 11, src: "/assets/Images/gallery/Vijay5kg.png", name: "Vijay 5kg Wholesale Pack", desc: "5kg bulk wholesale packing for distributors", category: "Bulk", tag: "Wholesale", wide: true },
+  { id: 12, src: "/assets/Images/gallery/vagad3k.jpg", name: "Vagad 3\"Industrial Heavy", desc: "Heavy-duty Vagad bands for industrial applications", category: "Industrial", tag: "Industrial", tagColor: "#1A3A8F" },
+  { id: 13, src: "/assets/Images/gallery/assorted.jpg", name: "Coloured Assorted 100g", desc: "100g assorted coloured bands — retail ready", category: "Coloured", tag: "Retail" },
+  { id: 14, src: "/assets/Images/gallery/vagad_red.png", name: "Vagad Red Colour Bands", desc: "Classic red single-colour Vagad rubber bands", category: "Vagad", tag: "Single Colour" ,tagColor: "#E8008A"},
+  { id: 15, src: "/assets/Images/gallery/vijay4k.png", name: "Vagad 4\" Bulk", desc: "Largest bulk pack — best price per kg", category: "Bulk", tag: "Best Value", tagColor: "#E8008A", wide: true },
+  { id: 16, src: "/assets/Images/gallery/vijay_nylon.png", name: "Fluorescent Nylon", desc: "Hot neon nylon bands — standout packaging", category: "Fluorescent", tag: "Neon", tagColor: "#E8008A" },
+  { id: 17, src: "/assets/Images/gallery/vijay_disco_black.png", name: "Vijay Disco Black Bands", desc: "Bright yellow standard bands by Vijay", category: "Vijay", tag: "Single Colour" },
+  { id: 18, src: "/assets/Images/gallery/vagad_assorted.jpg", name: "Vagad Assorted Coloured", desc: "Full-range assorted colour pack by Vagad", category: "Coloured", tag: "Assorted", tagColor: "#E8008A" },
+]I
 
 const FILTERS = ["All", "Vijay", "Vagad", "Coloured", "Bulk", "Fluorescent", "Industrial"] as const;
 type Filter = typeof FILTERS[number];
