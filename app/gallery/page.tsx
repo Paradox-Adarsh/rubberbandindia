@@ -50,7 +50,7 @@ const IMAGES: GalleryImage[] = [
   { id: 16, src: "/assets/Images/gallery/vijay_nylon.png", name: "Fluorescent Nylon", desc: "Hot neon nylon bands — standout packaging", category: "Fluorescent", tag: "Neon", tagColor: "#E8008A" },
   { id: 17, src: "/assets/Images/gallery/vijay_disco_black.png", name: "Vijay Disco Black Bands", desc: "Bright yellow standard bands by Vijay", category: "Vijay", tag: "Single Colour" },
   { id: 18, src: "/assets/Images/gallery/vagad_assorted.jpg", name: "Vagad Assorted Coloured", desc: "Full-range assorted colour pack by Vagad", category: "Coloured", tag: "Assorted", tagColor: "#E8008A" },
-]I
+]
 
 const FILTERS = ["All", "Vijay", "Vagad", "Coloured", "Bulk", "Fluorescent", "Industrial"] as const;
 type Filter = typeof FILTERS[number];
