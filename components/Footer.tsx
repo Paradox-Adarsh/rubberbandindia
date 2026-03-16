@@ -120,7 +120,7 @@ function ContactLink({
       target={href?.startsWith("http") ? "_blank" : undefined}
       rel="noopener noreferrer"
       {...(fadeVerticalIn as object)}
-      transition={{ duration: 0.5, ease: "easeOut", delay }}
+      // transition={{ duration: 0.5, ease: "easeOut", delay }}
       {...springHover}
       className="flex items-center gap-3 group cursor-pointer"
     >
@@ -405,7 +405,7 @@ export default function Footer() {
                 {...springHover}
                 className="px-4 sm:px-5 py-2.5 text-sm font-bold tracking-wide rounded text-white"
                 style={{ backgroundColor: "#AA1E15", fontFamily: "Arial, Helvetica, sans-serif" }}
-                whileHover={{ backgroundColor: "#C4261C" } as object}
+                // whileHover={{ backgroundColor: "#C4261C" } as object}
               >
                 View Products
               </motion.a>
