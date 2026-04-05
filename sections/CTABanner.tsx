@@ -107,7 +107,7 @@ function BrandCard({
     >
      
       <Image
-        src={imageSrc || "/assets/images/logo/vijay_logo.png"}
+        src={imageSrc || "/assets/Images/logo/vijay_logo.png"}
         alt={imageAlt || "rubberbandindia"}
         fill
         className="object-contain p-4"
@@ -533,13 +533,13 @@ export default function CTABanner() {
               <BrandCard
                 index={0}
                 inView={inView}
-               imageSrc="/assets/images/logo/vagad_logo.png"
+               imageSrc="/assets/Images/logo/vagad_logo.png"
                 imageAlt="Vagad Logo"
               />
               <BrandCard
                 index={1}
                 inView={inView}
-                imageSrc="/assets/images/logo/vijay_logo.png"
+                imageSrc="/assets//Images/logo/vijay_logo.png"
                 imageAlt="Vagad Logo"
               />
             </div>

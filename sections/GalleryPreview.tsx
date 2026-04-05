@@ -15,7 +15,7 @@ const GALLERY_ITEMS = [
     sublabel: "Full colour assortment",
     span: "lg:col-span-2 lg:row-span-2", // big card — top left
     aspect: "aspect-square",
-    src: "/assets/images/gallery/rubber_lab.png",
+    src: "/assets/Images/gallery/rubber_lab.png",
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ const GALLERY_ITEMS = [
     sublabel: "Heavy duty bulk rolls",
     span: "lg:col-span-1 lg:row-span-1",
     aspect: "aspect-video",
-    src: "/assets/images/gallery/rubber_lab.png",
+    src: "/assets/Images/gallery/rubber_lab.png",
   },
   {
     id: 3,
@@ -31,7 +31,7 @@ const GALLERY_ITEMS = [
     sublabel: "Retail & wholesale packs",
     span: "lg:col-span-1 lg:row-span-1",
     aspect: "aspect-video",
-    src: "/assets/images/gallery/rubber_factory.png",
+    src: "/assets/Images/gallery/rubber_factory.png",
   },
   {
     id: 4,
@@ -39,15 +39,16 @@ const GALLERY_ITEMS = [
     sublabel: "Made-to-spec bands",
     span: "lg:col-span-1 lg:row-span-1",
     aspect: "aspect-video",
-    src: "/assets/images/gallery/rubber_pack.png",
+    src: "/assets/Images/gallery/rubber_pack.png",
   },
+
   {
     id: 5,
     label: "Quality Check",
     sublabel: "ISO-certified process",
     span: "lg:col-span-1 lg:row-span-1",
     aspect: "aspect-video",
-    src: "/assets/images/gallery/rubber_quality.png",
+    src: "/assets/Images/gallery/rubber_quality.png",
   },
 ];
 

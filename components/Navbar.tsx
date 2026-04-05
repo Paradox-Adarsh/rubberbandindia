@@ -346,7 +346,7 @@ export default function Navbar() {
           >
            <div className="w-[100px] h-[50px] relative">
               <Image
-                src="/assets/images/logo/rubberindia_logo.png"
+                src="/assets/Images/logo/rubberindia_logo.png"
                 alt="rubberIndia"
                 fill
                 className=" object-middle"
