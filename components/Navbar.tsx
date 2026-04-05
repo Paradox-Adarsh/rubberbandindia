@@ -35,9 +35,9 @@ function DesktopLink({
     <Link href={href} className="no-underline">
       <motion.div
         {...springHover}
-        className={`relative px-1 py-1.5 cursor-pointer text-[15px] tracking-[0.01em] font-arial
+        className={`font-poppins relative px-1 py-1.5 cursor-pointer text-[15px] tracking-[0.01em] font-arial
           ${isActive ? "font-bold text-[#AA1E15]" : "font-medium text-[#1A1A1A]"}`}
-        style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+       
       >
         {label}
         {/* Active underline */}
@@ -88,9 +88,9 @@ function CartBtn({ count }: { count: number }) {
         <motion.span
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          className="absolute -top-1 -right-1 w-[17px] h-[17px] rounded-full bg-[#AA1E15]
+          className="font-poppins absolute -top-1 -right-1 w-[17px] h-[17px] rounded-full bg-[#AA1E15]
             text-white text-[10px] font-bold flex items-center justify-center"
-          style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+        
         >
           {count}
         </motion.span>
@@ -170,9 +170,9 @@ function MobileDrawer({
               restDelta: 0.01,
             }}
             className="fixed top-0 right-0 bottom-0 w-[280px] bg-[#EDE8DF] z-50
-              flex flex-col shadow-[-4px_0_24px_rgba(0,0,0,0.1)]"
+              flex flex-col shadow-[-4px_0_24px_rgba(0,0,0,0.1)] font-poppins"
             style={{
-              fontFamily: "Arial, Helvetica, sans-serif",
+             
               willChange: "transform",
             }}
           >
@@ -223,14 +223,14 @@ function MobileDrawer({
                     <Link
                       href={link.href}
                       onClick={onClose}
-                      className={`flex items-center justify-between px-6 py-3.5 text-[15px]
+                      className={`font-poppins flex items-center justify-between px-6 py-3.5 text-[15px]
                         no-underline transition-colors duration-150
                         ${
                           isActive
                             ? "font-bold text-[#AA1E15] border-l-[3px] border-[#AA1E15] bg-[rgba(170,30,21,0.05)]"
                             : "font-medium text-[#1A1A1A] border-l-[3px] border-transparent"
                         }`}
-                      style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+                     
                     >
                       {link.label}
                       <svg
@@ -255,14 +255,14 @@ function MobileDrawer({
                 href="/quote"
                 onClick={onClose}
                 className="block text-center py-[11px] bg-[#AA1E15] text-white rounded-md
-                  text-sm font-bold no-underline tracking-[0.03em]"
-                style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+                  text-sm font-bold no-underline tracking-[0.03em] font-poppins"
+               
               >
                 Get a Quote →
               </Link>
               <p
-                className="text-center text-[11px] text-[#9B9590] m-0"
-                style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+                className="text-center text-[11px] text-[#9B9590] m-0 font-poppins"
+              
               >
                 🛍 {cartCount} items in cart · Trusted since 2001
               </p>
@@ -319,7 +319,7 @@ export default function Navbar() {
         transition={{ duration: 0.7, ease: "easeOut" }}
         className="h-[3px] sticky top-0 z-60 origin-left"
         style={{
-          background: "linear-gradient(90deg, #AA1E15, #C4261C 50%, #AA1E15)",
+          background: "#FCFAF7",
         }}
       />
 
@@ -330,13 +330,13 @@ export default function Navbar() {
         transition={{ duration: 0.45, ease: "easeOut", delay: 0.1 }}
         role="navigation"
         aria-label="Main navigation"
-        className={`sticky top-[3px] z-[55] transition-all duration-300
+        className={`font-poppins sticky top-[3px] z-[55] transition-all duration-300
           ${
             scrolled
-              ? "bg-white border-b border-[#E8E4E0] shadow-[0_2px_16px_rgba(0,0,0,0.07)]"
-              : "bg-[#EDE8DF] border-b border-[#D4CFC8] shadow-none"
+              ? "bg-[#FAF7F2] border-b border-[#E8E4E0] shadow-[0_2px_16px_rgba(0,0,0,0.07)]"
+              : "bg-[#FCFAF7] border-b border-[#D4CFC8] shadow-none"
           }`}
-        style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+        
       >
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-6">
           {/* ── Brand ── */}
@@ -400,8 +400,8 @@ export default function Navbar() {
                 className="inline-flex items-center gap-1.5 px-3.5 sm:px-[18px] py-2
                   bg-[#AA1E15] text-white rounded-md text-[12px] sm:text-[13px] font-bold
                   no-underline tracking-[0.03em] whitespace-nowrap
-                  hover:bg-[#C4261C] transition-colors duration-200"
-                style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+                  hover:bg-[#C4261C] transition-colors duration-200 font-poppins"
+               
               >
                 <span className="hidden sm:inline">Download Catalogue</span>
                 <span className="sm:hidden">Quote</span>

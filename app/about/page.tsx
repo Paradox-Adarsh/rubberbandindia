@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import AboutIntroSection from "@/sections/AboutIntroSection";
 
-const FONT = "Arial, Helvetica, sans-serif";
+const FONT = "'Poppins', Arial, Helvetica, sans-serif";
 
 /* ─── Reusable animated section wrapper ─────────────────────────────── */
 function RevealSection({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -137,7 +137,7 @@ export default function AboutPage() {
 
       <div
         className="min-h-screen py-12 sm:py-20 px-4"
-        style={{ backgroundColor: "#F5F0E8" }}
+        style={{ backgroundColor: "#FAF7F2" }}
       >
         <div className="max-w-5xl mx-auto space-y-10 sm:space-y-14">
 

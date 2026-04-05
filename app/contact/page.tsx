@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import type { RootState } from "@/store/store";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 
-const FONT = "Arial, Helvetica, sans-serif";
+const FONT = "'Poppins', Arial, Helvetica, sans-serif";
 
 /* ─── Animated section reveal ───────────────────────────────────────── */
 function Reveal({ children, delay = 0, className = "" }: {
@@ -252,7 +252,7 @@ export default function ContactPage() {
   return (
     <div
       className="min-h-screen py-12 sm:py-20 px-4"
-      style={{ backgroundColor: "#F5F0E8", fontFamily: FONT }}
+      style={{ backgroundColor: "#FAF7F2", fontFamily: FONT }}
     >
       {/* Success toast */}
       <SuccessToast show={submitted} />

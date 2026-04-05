@@ -1,7 +1,7 @@
 
 export const images = [
-    "assets/Images/gallery/image1.jpg",
-    "assets/Images/gallery/image2.png",
-    "assets/Images/gallery/image4.jpg",
+    "assets/images/gallery/rubber_lab.ppg",
+    "assets/images/gallery/image2.png",
+    "assets/images/gallery/image4.jpg",
     
   ];

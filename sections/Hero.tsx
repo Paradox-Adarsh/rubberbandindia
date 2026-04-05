@@ -10,7 +10,7 @@ import {
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 
-const FONT = "Arial, Helvetica, sans-serif";
+const FONT = "'Poppins', Arial, Helvetica, sans-serif";
 
 /* ─── Animated counter hook ─────────────────────────────────────────── */
 function useCounter(end: number, duration = 1200) {
@@ -140,7 +140,7 @@ export default function Hero() {
       style={{
         position: "relative",
         overflow: "hidden",
-        backgroundColor: "#F5F0E8",
+        backgroundColor: "#FAF7F2",
         fontFamily: FONT,
       }}
     >

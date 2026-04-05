@@ -4,7 +4,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import Image, { StaticImageData } from "next/image";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 
-const FONT = "Arial, Helvetica, sans-serif";
+const FONT = "'Poppins', Arial, Helvetica, sans-serif";
 
 /* ─────────────────────────────────────────────────────────────────────
    IMAGES ARRAY — replace src values with your actual imports
@@ -490,7 +490,7 @@ export default function GalleryPage() {
   return (
     <main
       className="min-h-screen py-8 sm:py-14 px-4"
-      style={{ backgroundColor: "#F5F0E8", fontFamily: FONT }}
+      style={{ backgroundColor: "#FAF7F2", fontFamily: FONT }}
     >
       <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
 

@@ -27,24 +27,24 @@ function ElasticBand() {
         viewBox="0 0 1200 40"
         preserveAspectRatio="none"
         className="w-full overflow-visible"
-        style={{ height: stretched ? 52 : 18 }}
-        animate={{ height: stretched ? 52 : 18 }}
+        style={{ height: stretched ? 44 : 14 }}
+        animate={{ height: stretched ? 44 : 14 }}
         transition={{ type: "spring", stiffness: 220, damping: 20 }}
       >
         <motion.ellipse
           cx="600"
-          cy={stretched ? 46 : 16}
+          cy={stretched ? 38 : 12}
           rx="580"
           ry="5"
           fill="rgba(170,30,21,0.12)"
-          animate={{ cy: stretched ? 46 : 16, ry: stretched ? 9 : 4 }}
+          animate={{ cy: stretched ? 38 : 12, ry: stretched ? 8 : 4 }}
           transition={{ type: "spring", stiffness: 220, damping: 20 }}
         />
         <motion.path
           d={
             stretched
-              ? "M 10 5 Q 300 44 600 48 Q 900 44 1190 5 L 1190 19 Q 900 58 600 62 Q 300 58 10 19 Z"
-              : "M 10 5 Q 600 11 1190 5 L 1190 19 Q 600 25 10 19 Z"
+              ? "M 10 4 Q 300 38 600 42 Q 900 38 1190 4 L 1190 16 Q 900 50 600 54 Q 300 50 10 16 Z"
+              : "M 10 4 Q 600 10 1190 4 L 1190 16 Q 600 22 10 16 Z"
           }
           fill="#AA1E15"
           transition={{ type: "spring", stiffness: 180, damping: 16 }}
@@ -52,8 +52,8 @@ function ElasticBand() {
         <motion.path
           d={
             stretched
-              ? "M 10 5 Q 300 40 600 44 Q 900 40 1190 5 L 1190 10 Q 900 44 600 48 Q 300 44 10 10 Z"
-              : "M 10 5 Q 600 9 1190 5 L 1190 10 Q 600 14 10 10 Z"
+              ? "M 10 4 Q 300 34 600 38 Q 900 34 1190 4 L 1190 9 Q 900 38 600 42 Q 300 38 10 9 Z"
+              : "M 10 4 Q 600 8 1190 4 L 1190 9 Q 600 13 10 9 Z"
           }
           fill="#C4261C"
           opacity="0.55"
@@ -61,14 +61,14 @@ function ElasticBand() {
         />
         <motion.text
           x="600"
-          y={stretched ? 34 : 14}
+          y={stretched ? 28 : 11}
           textAnchor="middle"
-          fontSize="6.5"
+          fontSize="6"
           fontFamily="Arial, Helvetica, sans-serif"
           letterSpacing="3.5"
           fill="#F5F0E8"
           opacity="0.9"
-          animate={{ y: stretched ? 34 : 14 }}
+          animate={{ y: stretched ? 28 : 11 }}
           transition={{ type: "spring", stiffness: 180, damping: 16 }}
         >
           GHANSHYAM ENTERPRISES · QUALITY RUBBER BANDS · SINCE 2001
@@ -81,7 +81,7 @@ function ElasticBand() {
             initial={{ opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] tracking-widest whitespace-nowrap pointer-events-none"
+            className="absolute -top-4 left-1/2 -translate-x-1/2 text-[9px] tracking-widest whitespace-nowrap pointer-events-none"
             style={{ color: "#AA1E15", fontFamily: "Arial, Helvetica, sans-serif" }}
           >
             ↑ SNAP ↑
@@ -120,14 +120,13 @@ function ContactLink({
       target={href?.startsWith("http") ? "_blank" : undefined}
       rel="noopener noreferrer"
       {...(fadeVerticalIn as object)}
-      // transition={{ duration: 0.5, ease: "easeOut", delay }}
       {...springHover}
       className="flex items-center gap-3 group cursor-pointer"
     >
       <motion.span
         whileHover={{ rotate: [0, -12, 12, 0] }}
         transition={{ duration: 0.35 }}
-        className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center"
+        className="w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center"
         style={{
           backgroundColor: "rgba(170,30,21,0.08)",
           border: "1px solid rgba(170,30,21,0.2)",
@@ -137,14 +136,14 @@ function ContactLink({
         {icon}
       </motion.span>
       <span
-        className="text-sm sm:text-base transition-colors duration-200 group-hover:underline underline-offset-4 break-all"
+        className="text-sm transition-colors duration-200 group-hover:underline underline-offset-4 break-all"
         style={{ color: "#4A4540", fontFamily: "Arial, Helvetica, sans-serif" }}
       >
         {label}
       </span>
       {href && (
         <ArrowUpRight
-          size={13}
+          size={12}
           className="flex-shrink-0 opacity-0 group-hover:opacity-70 transition-all duration-200 -ml-1 group-hover:ml-0"
           style={{ color: "#AA1E15" }}
         />
@@ -156,10 +155,10 @@ function ContactLink({
 /* ─── Section Heading ────────────────────────────────────────────────── */
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex items-center gap-2 mb-4">
-      <Minus size={12} style={{ color: "#AA1E15" }} />
+    <div className="flex items-center gap-2 mb-3">
+      <Minus size={11} style={{ color: "#AA1E15" }} />
       <h3
-        className="text-xs tracking-[0.28em] font-bold uppercase"
+        className="text-[10px] tracking-[0.28em] font-bold uppercase"
         style={{ color: "#AA1E15", fontFamily: "Arial, Helvetica, sans-serif" }}
       >
         {children}
@@ -183,8 +182,8 @@ export default function Footer() {
       ref={ref}
       className="relative overflow-hidden"
       style={{
-        backgroundColor: "#EDE8DF",
-        fontFamily: "Arial, Helvetica, sans-serif",
+        backgroundColor: "#FAF7F2",
+       fontFamily: "Poppins, Arial, Helvetica, sans-serif",
       }}
     >
       {/* Dot texture */}
@@ -196,26 +195,26 @@ export default function Footer() {
         }}
       />
 
-      {/* Red glow — bottom left */}
+      {/* Red glow — bottom left — reduced size */}
       <div
         className="absolute pointer-events-none"
         style={{
-          width: 400,
-          height: 400,
+          width: 280,
+          height: 280,
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(170,30,21,0.06) 0%, transparent 70%)",
-          bottom: "-20%",
-          left: "-8%",
-          filter: "blur(40px)",
+          background: "radial-gradient(circle, rgba(170,30,21,0.05) 0%, transparent 70%)",
+          bottom: "-10%",
+          left: "-5%",
+          filter: "blur(30px)",
         }}
       />
 
-      {/* Band rings — hidden on small screens to avoid clutter */}
-      <div className="absolute top-4 right-8 hidden sm:block">
-        <BandRing size={90} delay={0} />
+      {/* Band rings */}
+      <div className="absolute top-3 right-8 hidden sm:block">
+        <BandRing size={72} delay={0} />
       </div>
-      <div className="absolute bottom-10 left-[55%] hidden sm:block">
-        <BandRing size={55} delay={1.4} />
+      <div className="absolute bottom-8 left-[55%] hidden sm:block">
+        <BandRing size={44} delay={1.4} />
       </div>
 
       {/* Elastic band divider */}
@@ -223,23 +222,18 @@ export default function Footer() {
         <ElasticBand />
       </div>
 
-      {/* Main content */}
+      {/* ── Main content ── */}
       <motion.div
         variants={staggerContainer}
         initial="hidden"
         animate={inView ? "show" : "hidden"}
-        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 pb-6 sm:pb-8"
+        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-0"
       >
-        {/* 
-          Mobile  : 1 col, stacked
-          md      : 12-col grid — brand 5, address 3, contact 4
-        */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
 
           {/* ── Brand Column ── */}
           <motion.div variants={fadeUpVariant} className="md:col-span-5">
-            {/* Badge row */}
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-4">
+            <div className="flex flex-wrap items-center gap-2 mb-3">
               <span
                 className="text-xs font-semibold tracking-wide px-2.5 py-1 rounded"
                 style={{
@@ -259,7 +253,7 @@ export default function Footer() {
             <motion.h2
               {...(scaleIn as object)}
               animate={inView ? "animate" : "initial"}
-              className="text-2xl sm:text-3xl font-black tracking-tight leading-tight"
+              className="text-xl sm:text-2xl font-black tracking-tight leading-tight"
               style={{ color: "#1A1A1A", fontFamily: "Arial, Helvetica, sans-serif" }}
             >
               Durable rubber bands
@@ -269,7 +263,7 @@ export default function Footer() {
 
             <motion.p
               variants={fadeUpVariant}
-              className="mt-3 text-sm sm:text-base leading-relaxed max-w-sm"
+              className="mt-2 text-sm leading-relaxed max-w-sm"
               style={{ color: "#4A4540" }}
             >
               Premium rubber bands for stationery, packaging, and industrial
@@ -282,15 +276,15 @@ export default function Footer() {
               {...(fadeIn as object)}
               animate={inView ? "animate" : "initial"}
               transition={{ delay: 0.4 }}
-              className="mt-5 flex items-center gap-6 sm:gap-8"
+              className="mt-4 flex items-center gap-6"
             >
               {[
                 { num: "1M+", label: "Pieces supplied monthly" },
                 { num: "500+", label: "Enterprise customers" },
               ].map(({ num, label }) => (
                 <div key={num}>
-                  <p className="text-xl font-black" style={{ color: "#1A1A1A" }}>{num}</p>
-                  <p className="text-xs sm:text-sm mt-0.5" style={{ color: "#9B9590" }}>{label}</p>
+                  <p className="text-lg font-black" style={{ color: "#1A1A1A" }}>{num}</p>
+                  <p className="text-xs mt-0.5" style={{ color: "#9B9590" }}>{label}</p>
                 </div>
               ))}
             </motion.div>
@@ -300,7 +294,7 @@ export default function Footer() {
               {...(fadeIn as object)}
               animate={inView ? "animate" : "initial"}
               transition={{ delay: 0.55 }}
-              className="mt-5 flex gap-1.5 items-end"
+              className="mt-4 flex gap-1.5 items-end"
               aria-hidden
             >
               {["#E8DDD0", "#D4C4B0", "#C09878", "#AA1E15", "#1A1A1A"].map((color, i) => (
@@ -310,8 +304,8 @@ export default function Footer() {
                   animate={inView ? { scaleY: 1 } : {}}
                   transition={{ delay: 0.35 + i * 0.07, duration: 0.35, ease: "easeOut" }}
                   style={{
-                    width: 7 + i * 3,
-                    height: 12 + i * 4,
+                    width: 6 + i * 3,
+                    height: 10 + i * 3,
                     backgroundColor: color,
                     borderRadius: 3,
                     transformOrigin: "bottom",
@@ -334,21 +328,18 @@ export default function Footer() {
               className="flex items-start gap-3"
             >
               <span
-                className="mt-1 w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center"
+                className="mt-1 w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center"
                 style={{
                   backgroundColor: "rgba(170,30,21,0.1)",
                   border: "1.5px solid rgba(170,30,21,0.3)",
                   color: "#AA1E15",
                 }}
               >
-                <MapPin size={15} />
+                <MapPin size={13} />
               </span>
               <address
-                className="not-italic text-sm sm:text-base leading-7"
-                style={{
-                  color: "#2A2520",
-                  fontFamily: "Arial, Helvetica, sans-serif",
-                }}
+                className="not-italic text-sm leading-6"
+                style={{ color: "#2A2520", fontFamily: "Arial, Helvetica, sans-serif" }}
               >
                 18/20, Kazi Sayeed Street,<br />
                 1st Floor, Room No. 3B,<br />
@@ -361,11 +352,11 @@ export default function Footer() {
 
             {/* Rotating band loop */}
             <motion.div
-              className="mt-5"
+              className="mt-4"
               animate={{ rotate: [0, 3, -3, 0] }}
               transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
             >
-              <svg width="48" height="24" viewBox="0 0 52 26" aria-hidden>
+              <svg width="40" height="20" viewBox="0 0 52 26" aria-hidden>
                 <ellipse cx="26" cy="13" rx="24" ry="10" stroke="#AA1E15" strokeWidth="4" fill="none" opacity="0.22" />
                 <ellipse cx="26" cy="13" rx="24" ry="10" stroke="#1A1A1A" strokeWidth="2" fill="none" strokeDasharray="4 6" opacity="0.12" />
               </svg>
@@ -376,17 +367,17 @@ export default function Footer() {
           <motion.div variants={fadeUpVariant} className="md:col-span-4">
             <SectionHeading>Contact</SectionHeading>
 
-            <div className="space-y-3.5">
-              <ContactLink icon={<Phone size={14} />} label="9820674274" delay={0.1} />
-              <ContactLink icon={<Phone size={14} />} label="7021238502" delay={0.14} />
+            <div className="space-y-2.5">
+              <ContactLink icon={<Phone size={13} />} label="9820674274" delay={0.1} />
+              <ContactLink icon={<Phone size={13} />} label="7021238502" delay={0.14} />
               <ContactLink
-                icon={<Mail size={14} />}
+                icon={<Mail size={13} />}
                 label="vijayvagadrubber@gmail.com"
                 href="mailto:vijayvagadrubber@gmail.com"
                 delay={0.18}
               />
               <ContactLink
-                icon={<Globe size={14} />}
+                icon={<Globe size={13} />}
                 label="www.rubberbandindia.com"
                 href="https://rubberbandindia.com"
                 delay={0.22}
@@ -398,21 +389,20 @@ export default function Footer() {
               {...(fadeIn as object)}
               animate={inView ? "animate" : "initial"}
               transition={{ delay: 0.5 }}
-              className="mt-6 flex flex-wrap items-center gap-3"
+              className="mt-5 flex flex-wrap items-center gap-2.5"
             >
               <motion.a
                 href="/products"
                 {...springHover}
-                className="px-4 sm:px-5 py-2.5 text-sm font-bold tracking-wide rounded text-white"
+                className="px-4 py-2 text-xs font-bold tracking-wide rounded text-white"
                 style={{ backgroundColor: "#AA1E15", fontFamily: "Arial, Helvetica, sans-serif" }}
-                // whileHover={{ backgroundColor: "#C4261C" } as object}
               >
                 View Products
               </motion.a>
               <motion.a
                 href="/contact"
                 {...springHover}
-                className="px-4 sm:px-5 py-2.5 text-sm font-bold tracking-wide rounded border"
+                className="px-4 py-2 text-xs font-bold tracking-wide rounded border"
                 style={{
                   borderColor: "#C4BFB8",
                   color: "#1A1A1A",
@@ -426,16 +416,26 @@ export default function Footer() {
           </motion.div>
         </div>
 
+        {/* ── Divider line ── */}
+        <hr
+          style={{
+            marginTop: 24,
+            marginBottom: 0,
+            border: "none",
+            borderTop: "1.5px solid #8A7E78",
+            opacity: 1,
+          }}
+        />
+
         {/* ── Bottom bar ── */}
         <motion.div
           {...(fadeUp as object)}
           animate={inView ? "animate" : "initial"}
           transition={{ delay: 0.45, duration: 0.5 }}
-          className="mt-8 pt-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left"
-          style={{ borderTop: "1px solid #D4CFC8" }}
+          className="py-3 flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left"
         >
           <p
-            className="text-xs sm:text-sm tracking-wide"
+            className="text-xs tracking-wide"
             style={{ color: "#7A7570", fontFamily: "Arial, Helvetica, sans-serif" }}
           >
             © {new Date().getFullYear()} Ghanshyam Enterprises. All rights reserved.
@@ -448,7 +448,7 @@ export default function Footer() {
                 initial={{ opacity: 0 }}
                 animate={inView ? { opacity: 1 } : {}}
                 transition={{ delay: 0.55 + i * 0.08 }}
-                className="text-xs sm:text-sm tracking-wide"
+                className="text-xs tracking-wide"
                 style={{ color: "#7A7570", fontFamily: "Arial, Helvetica, sans-serif" }}
               >
                 {tag}
