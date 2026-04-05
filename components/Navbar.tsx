@@ -142,7 +142,7 @@ function MobileDrawer({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={onClose}
-            className="fixed inset-0 bg-[rgba(26,26,26,0.35)] z-40 backdrop-blur-sm"
+           className="fixed inset-0 bg-[rgba(26,26,26,0.5)] z-40"
           />
 
           {/* Drawer panel */}
@@ -151,10 +151,10 @@ function MobileDrawer({
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
-            transition={{ type: "spring", stiffness: 320, damping: 34 }}
+          transition={{ type: "spring", stiffness: 320, damping: 34, restDelta: 0.01 }}
             className="fixed top-0 right-0 bottom-0 w-[280px] bg-[#EDE8DF] z-50
               flex flex-col shadow-[-4px_0_24px_rgba(0,0,0,0.1)]"
-            style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+            style={{ fontFamily: "Arial, Helvetica, sans-serif" ,willChange: "transform"}}
           >
             {/* Header */}
             <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-[#D4CFC8]">
@@ -193,7 +193,7 @@ function MobileDrawer({
                     key={link.href}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.06 + 0.1, duration: 0.3 }}
+                   transition={{ delay: i * 0.04 + 0.05, duration: 0.2 }} 
                   >
                     <Link
                       href={link.href}
@@ -246,7 +246,7 @@ function ScrollProgress() {
   const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
   return (
     <motion.div
-      style={{ scaleX, transformOrigin: "left" }}
+      style={{ scaleX, transformOrigin: "left", willChange: "transform" }}
       className="h-0.5 bg-[#AA1E15] opacity-35"
     />
   );
