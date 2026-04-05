@@ -3,8 +3,14 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { springHover } from "@/lib/motions";
+import Image from "next/image";
 
 /* ─── Nav link data ──────────────────────────────────────────────────── */
 const NAV_LINKS = [
@@ -15,26 +21,16 @@ const NAV_LINKS = [
   { href: "/contact", label: "Contact" },
 ];
 
-/* ─── Logo mark ──────────────────────────────────────────────────────── */
-function LogoMark() {
-  return (
-    <motion.div
-      animate={{ rotate: [0, 4, -4, 0] }}
-      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-      className="w-9 h-9 flex-shrink-0"
-    >
-      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="20" cy="20" rx="17" ry="10" stroke="#AA1E15" strokeWidth="3.5" fill="none" />
-        <ellipse cx="20" cy="20" rx="17" ry="10" stroke="#C4261C" strokeWidth="1.5" fill="none"
-          strokeDasharray="4 3" opacity="0.5" />
-        <ellipse cx="20" cy="20" rx="10" ry="5.5" stroke="#AA1E15" strokeWidth="2" fill="none" opacity="0.35" />
-      </svg>
-    </motion.div>
-  );
-}
-
 /* ─── Desktop Nav Link ───────────────────────────────────────────────── */
-function DesktopLink({ href, label, isActive }: { href: string; label: string; isActive: boolean }) {
+function DesktopLink({
+  href,
+  label,
+  isActive,
+}: {
+  href: string;
+  label: string;
+  isActive: boolean;
+}) {
   return (
     <Link href={href} className="no-underline">
       <motion.div
@@ -74,8 +70,16 @@ function CartBtn({ count }: { count: number }) {
       className="relative w-[38px] h-[38px] rounded-full border border-[#D4CFC8] bg-transparent
         flex items-center justify-center cursor-pointer text-[#1A1A1A]"
     >
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" strokeWidth="2"
-        strokeLinecap="round" strokeLinejoin="round" stroke="currentColor">
+      <svg
+        width="17"
+        height="17"
+        viewBox="0 0 24 24"
+        fill="none"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        stroke="currentColor"
+      >
         <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
         <line x1="3" y1="6" x2="21" y2="6" />
         <path d="M16 10a4 4 0 01-8 0" />
@@ -111,9 +115,11 @@ function Hamburger({ open, onClick }: { open: boolean; onClick: () => void }) {
           key={i}
           animate={
             open
-              ? i === 0 ? { rotate: 45, y: 10, width: 18 }
-              : i === 2 ? { rotate: -45, y: -10, width: 18 }
-              : { opacity: 0, width: 0 }
+              ? i === 0
+                ? { rotate: 45, y: 10, width: 18 }
+                : i === 2
+                  ? { rotate: -45, y: -10, width: 18 }
+                  : { opacity: 0, width: 0 }
               : { rotate: 0, y: 0, opacity: 1, width: i === 1 ? 12 : 18 }
           }
           transition={{ duration: 0.25, ease: "easeInOut" }}
@@ -126,9 +132,15 @@ function Hamburger({ open, onClick }: { open: boolean; onClick: () => void }) {
 
 /* ─── Mobile Drawer ──────────────────────────────────────────────────── */
 function MobileDrawer({
-  open, pathname, cartCount, onClose,
+  open,
+  pathname,
+  cartCount,
+  onClose,
 }: {
-  open: boolean; pathname: string; cartCount: number; onClose: () => void;
+  open: boolean;
+  pathname: string;
+  cartCount: number;
+  onClose: () => void;
 }) {
   return (
     <AnimatePresence>
@@ -142,7 +154,7 @@ function MobileDrawer({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={onClose}
-           className="fixed inset-0 bg-[rgba(26,26,26,0.5)] z-40"
+            className="fixed inset-0 bg-[rgba(26,26,26,0.5)] z-40"
           />
 
           {/* Drawer panel */}
@@ -151,15 +163,22 @@ function MobileDrawer({
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
-          transition={{ type: "spring", stiffness: 320, damping: 34, restDelta: 0.01 }}
+            transition={{
+              type: "spring",
+              stiffness: 320,
+              damping: 34,
+              restDelta: 0.01,
+            }}
             className="fixed top-0 right-0 bottom-0 w-[280px] bg-[#EDE8DF] z-50
               flex flex-col shadow-[-4px_0_24px_rgba(0,0,0,0.1)]"
-            style={{ fontFamily: "Arial, Helvetica, sans-serif" ,willChange: "transform"}}
+            style={{
+              fontFamily: "Arial, Helvetica, sans-serif",
+              willChange: "transform",
+            }}
           >
             {/* Header */}
             <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-[#D4CFC8]">
               <div className="flex items-center gap-2.5">
-                <LogoMark />
                 <div>
                   <p className="text-[13px] font-extrabold text-[#1A1A1A] m-0 leading-tight">
                     GHANSHYAM
@@ -176,8 +195,14 @@ function MobileDrawer({
                 className="w-8 h-8 rounded-full border border-[#D4CFC8] bg-transparent cursor-pointer
                   flex items-center justify-center text-[#4A4540]"
               >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" strokeWidth="2.5">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
                   <line x1="18" y1="6" x2="6" y2="18" />
                   <line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
@@ -193,22 +218,29 @@ function MobileDrawer({
                     key={link.href}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                   transition={{ delay: i * 0.04 + 0.05, duration: 0.2 }} 
+                    transition={{ delay: i * 0.04 + 0.05, duration: 0.2 }}
                   >
                     <Link
                       href={link.href}
                       onClick={onClose}
                       className={`flex items-center justify-between px-6 py-3.5 text-[15px]
                         no-underline transition-colors duration-150
-                        ${isActive
-                          ? "font-bold text-[#AA1E15] border-l-[3px] border-[#AA1E15] bg-[rgba(170,30,21,0.05)]"
-                          : "font-medium text-[#1A1A1A] border-l-[3px] border-transparent"
+                        ${
+                          isActive
+                            ? "font-bold text-[#AA1E15] border-l-[3px] border-[#AA1E15] bg-[rgba(170,30,21,0.05)]"
+                            : "font-medium text-[#1A1A1A] border-l-[3px] border-transparent"
                         }`}
                       style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
                     >
                       {link.label}
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                        stroke={isActive ? "#AA1E15" : "#C4BFB8"} strokeWidth="2">
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke={isActive ? "#AA1E15" : "#C4BFB8"}
+                        strokeWidth="2"
+                      >
                         <path d="M9 18l6-6-6-6" />
                       </svg>
                     </Link>
@@ -228,8 +260,10 @@ function MobileDrawer({
               >
                 Get a Quote →
               </Link>
-              <p className="text-center text-[11px] text-[#9B9590] m-0"
-                style={{ fontFamily: "Arial, Helvetica, sans-serif" }}>
+              <p
+                className="text-center text-[11px] text-[#9B9590] m-0"
+                style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+              >
                 🛍 {cartCount} items in cart · Trusted since 2001
               </p>
             </div>
@@ -265,11 +299,15 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => { setMobileOpen(false); }, [pathname]);
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileOpen]);
 
   return (
@@ -280,7 +318,9 @@ export default function Navbar() {
         animate={{ scaleX: 1 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
         className="h-[3px] sticky top-0 z-60 origin-left"
-        style={{ background: "linear-gradient(90deg, #AA1E15, #C4261C 50%, #AA1E15)" }}
+        style={{
+          background: "linear-gradient(90deg, #AA1E15, #C4261C 50%, #AA1E15)",
+        }}
       />
 
       {/* ── Nav ── */}
@@ -291,33 +331,26 @@ export default function Navbar() {
         role="navigation"
         aria-label="Main navigation"
         className={`sticky top-[3px] z-[55] transition-all duration-300
-          ${scrolled
-            ? "bg-white border-b border-[#E8E4E0] shadow-[0_2px_16px_rgba(0,0,0,0.07)]"
-            : "bg-[#EDE8DF] border-b border-[#D4CFC8] shadow-none"
+          ${
+            scrolled
+              ? "bg-white border-b border-[#E8E4E0] shadow-[0_2px_16px_rgba(0,0,0,0.07)]"
+              : "bg-[#EDE8DF] border-b border-[#D4CFC8] shadow-none"
           }`}
         style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
       >
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-6">
-
           {/* ── Brand ── */}
-          <Link href="/" className="no-underline flex items-center gap-2.5 flex-shrink-0">
-            <LogoMark />
-            <div>
-              <motion.p
-                initial={{ opacity: 0, x: -8 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2, duration: 0.4 }}
-                className="m-0 text-[13px] sm:text-[15px] font-extrabold text-[#1A1A1A]
-                  tracking-[0.04em] leading-tight"
-                style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
-              >
-                RubberBands{" "}
-                <span className="text-[#AA1E15]">India</span>
-              </motion.p>
-              <p className="m-0 text-[9px] sm:text-[10px] text-[#9B9590] tracking-[0.12em]"
-                style={{ fontFamily: "Arial, Helvetica, sans-serif" }}>
-                Rubber Bands · Since 2001
-              </p>
+          <Link
+            href="/"
+            className="no-underline flex items-center gap-2.5 flex-shrink-0"
+          >
+           <div className="w-[100px] h-[50px] relative">
+              <Image
+                src="/assets/images/logo/rubberindia_logo.png"
+                alt="rubberIndia"
+                fill
+                className=" object-middle"
+              />
             </div>
           </Link>
 
@@ -327,7 +360,9 @@ export default function Navbar() {
             animate="show"
             variants={{
               hidden: {},
-              show: { transition: { staggerChildren: 0.07, delayChildren: 0.25 } },
+              show: {
+                transition: { staggerChildren: 0.07, delayChildren: 0.25 },
+              },
             }}
             role="list"
             className="hidden md:flex items-center gap-5 lg:gap-7 list-none m-0 p-0"
@@ -340,7 +375,11 @@ export default function Navbar() {
                   show: { opacity: 1, y: 0, transition: { duration: 0.3 } },
                 }}
               >
-                <DesktopLink href={link.href} label={link.label} isActive={pathname === link.href} />
+                <DesktopLink
+                  href={link.href}
+                  label={link.label}
+                  isActive={pathname === link.href}
+                />
               </motion.li>
             ))}
           </motion.ul>
@@ -352,26 +391,7 @@ export default function Navbar() {
             transition={{ delay: 0.4, duration: 0.4 }}
             className="flex items-center gap-2 sm:gap-2.5"
           >
-            {/* Search pill — lg+ only */}
-            <motion.div
-              {...springHover}
-              role="search"
-              tabIndex={0}
-              aria-label="Search"
-              className={`hidden lg:flex items-center gap-1.5 px-3.5 py-[7px] rounded-full
-                border border-[#D4CFC8] cursor-pointer transition-colors duration-200
-                ${scrolled ? "bg-[#F7F5F2]" : "bg-white/60"}`}
-            >
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
-                strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" stroke="#4A4540">
-                <circle cx="11" cy="11" r="7" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
-              <span className="text-[13px] text-[#9B9590]"
-                style={{ fontFamily: "Arial, Helvetica, sans-serif" }}>
-                Search…
-              </span>
-            </motion.div>
+        
 
             {/* Quote CTA — hidden on xs, shown sm+ */}
             <motion.div className="hidden sm:block" {...springHover}>
@@ -385,8 +405,14 @@ export default function Navbar() {
               >
                 <span className="hidden sm:inline">Download Catalogue</span>
                 <span className="sm:hidden">Quote</span>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" strokeWidth="2.5">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </Link>
@@ -397,7 +423,10 @@ export default function Navbar() {
 
             {/* Hamburger — md and below */}
             <div className="flex md:hidden">
-              <Hamburger open={mobileOpen} onClick={() => setMobileOpen((p) => !p)} />
+              <Hamburger
+                open={mobileOpen}
+                onClick={() => setMobileOpen((p) => !p)}
+              />
             </div>
           </motion.div>
         </div>
