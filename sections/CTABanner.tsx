@@ -73,7 +73,6 @@ function RingDeco({
 function BrandCard({
   index,
   inView,
-  // Uncomment and use these once you have your images:
   imageSrc,
   imageAlt,
 }: {
@@ -95,36 +94,58 @@ function BrandCard({
         position: "relative",
         borderRadius: 16,
         overflow: "hidden",
-        border: "1.5px solid rgba(255,255,255,0.18)",
-        backgroundColor: "rgba(255,255,255,0.07)",
-        backdropFilter: "blur(8px)",
-        aspectRatio: "4/3",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        minHeight: 180,
+        border: "1.5px solid rgba(255,255,255,0.22)",
+        background:
+          "radial-gradient(ellipse at 60% 40%, rgba(255,255,255,0.13) 0%, rgba(255,255,255,0.04) 100%), rgba(0,0,0,0.28)",
+        backdropFilter: "blur(10px)",
+        width: "100%",
+        paddingBottom: "75%", // ← this replaces aspectRatio: "4/3" — works on all browsers/mobile
+        height: 0, // ← required for paddingBottom trick
       }}
     >
-     
-      <Image
-        src={imageSrc || "/assets/Images/logo/vijay_logo.png"}
-        alt={imageAlt || "rubberbandindia"}
-        fill
-        className="object-contain p-4"
-        priority
+      {/* Subtle inner shine at top */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "45%",
+          background:
+            "linear-gradient(to bottom, rgba(255,255,255,0.08), transparent)",
+          pointerEvents: "none",
+          borderRadius: "16px 16px 0 0",
+        }}
       />
-      ─────────────────────────────────────────────────────────────
-      {/* Placeholder UI — remove once images are added */}
-      {/* Corner accent */}
+
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Image
+          src={imageSrc || "/assets/Images/logo/vijay_logo.png"}
+          alt={imageAlt || "rubberbandindia"}
+          fill
+          className="object-contain p-4"
+          priority
+        />
+      </div>
+
+      {/* Corner dots */}
       <div
         style={{
           position: "absolute",
           top: 10,
           right: 10,
-          width: 8,
-          height: 8,
+          width: 6,
+          height: 6,
           borderRadius: "50%",
-          backgroundColor: "rgba(255,255,255,0.3)",
+          backgroundColor: "rgba(255,255,255,0.25)",
         }}
       />
       <div
@@ -132,10 +153,10 @@ function BrandCard({
           position: "absolute",
           bottom: 10,
           left: 10,
-          width: 5,
-          height: 5,
+          width: 4,
+          height: 4,
           borderRadius: "50%",
-          backgroundColor: "rgba(255,255,255,0.2)",
+          backgroundColor: "rgba(255,255,255,0.15)",
         }}
       />
     </motion.div>
@@ -529,17 +550,26 @@ export default function CTABanner() {
             </motion.p>
 
             {/* Two image cards side by side */}
-            <div className="grid grid-cols-2 gap-4">
+            {/* Two image cards side by side */}
+            {/* Two image cards side by side */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+                gap: 12,
+                width: "100%",
+              }}
+            >
               <BrandCard
                 index={0}
                 inView={inView}
-               imageSrc="/assets/Images/logo/vagad_logo.png"
+                imageSrc="/assets/Images/logo/vagad_logo.png"
                 imageAlt="Vagad Logo"
               />
               <BrandCard
                 index={1}
                 inView={inView}
-                imageSrc="/assets//Images/logo/vijay_logo.png"
+                imageSrc="/assets/Images/logo/vijay_logo.png"
                 imageAlt="Vagad Logo"
               />
             </div>
@@ -566,12 +596,8 @@ export default function CTABanner() {
                   borderRadius: 4,
                 }}
               >
-                  💡 Vijay and Vagad {" "}
-                from RubberBanndsIndia
+                💡 Vijay and Vagad from RubberBanndsIndia
               </code>
-              
-              
-         
             </motion.p>
           </div>
         </div>

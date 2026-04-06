@@ -37,7 +37,6 @@ function DesktopLink({
         {...springHover}
         className={`font-poppins relative px-1 py-1.5 cursor-pointer text-[15px] tracking-[0.01em] font-arial
           ${isActive ? "font-bold text-[#AA1E15]" : "font-medium text-[#1A1A1A]"}`}
-       
       >
         {label}
         {/* Active underline */}
@@ -62,42 +61,6 @@ function DesktopLink({
 }
 
 /* ─── Cart Button ────────────────────────────────────────────────────── */
-function CartBtn({ count }: { count: number }) {
-  return (
-    <motion.button
-      {...springHover}
-      aria-label={`Cart — ${count} items`}
-      className="relative w-[38px] h-[38px] rounded-full border border-[#D4CFC8] bg-transparent
-        flex items-center justify-center cursor-pointer text-[#1A1A1A]"
-    >
-      <svg
-        width="17"
-        height="17"
-        viewBox="0 0 24 24"
-        fill="none"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        stroke="currentColor"
-      >
-        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
-        <line x1="3" y1="6" x2="21" y2="6" />
-        <path d="M16 10a4 4 0 01-8 0" />
-      </svg>
-      {count > 0 && (
-        <motion.span
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          className="font-poppins absolute -top-1 -right-1 w-[17px] h-[17px] rounded-full bg-[#AA1E15]
-            text-white text-[10px] font-bold flex items-center justify-center"
-        
-        >
-          {count}
-        </motion.span>
-      )}
-    </motion.button>
-  );
-}
 
 /* ─── Hamburger ──────────────────────────────────────────────────────── */
 function Hamburger({ open, onClick }: { open: boolean; onClick: () => void }) {
@@ -172,7 +135,6 @@ function MobileDrawer({
             className="fixed top-0 right-0 bottom-0 w-[280px] bg-[#EDE8DF] z-50
               flex flex-col shadow-[-4px_0_24px_rgba(0,0,0,0.1)] font-poppins"
             style={{
-             
               willChange: "transform",
             }}
           >
@@ -230,7 +192,6 @@ function MobileDrawer({
                             ? "font-bold text-[#AA1E15] border-l-[3px] border-[#AA1E15] bg-[rgba(170,30,21,0.05)]"
                             : "font-medium text-[#1A1A1A] border-l-[3px] border-transparent"
                         }`}
-                     
                     >
                       {link.label}
                       <svg
@@ -256,14 +217,10 @@ function MobileDrawer({
                 onClick={onClose}
                 className="block text-center py-[11px] bg-[#AA1E15] text-white rounded-md
                   text-sm font-bold no-underline tracking-[0.03em] font-poppins"
-               
               >
                 Get a Quote →
               </Link>
-              <p
-                className="text-center text-[11px] text-[#9B9590] m-0 font-poppins"
-              
-              >
+              <p className="text-center text-[11px] text-[#9B9590] m-0 font-poppins">
                 🛍 {cartCount} items in cart · Trusted since 2001
               </p>
             </div>
@@ -288,6 +245,12 @@ function ScrollProgress() {
 
 /* ─── Main Navbar ────────────────────────────────────────────────────── */
 export default function Navbar() {
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = "/assets/catalogue.pdf"; // ← put your PDF path here
+    link.download = "Ghanshyam-Enterprises-Catalogue.pdf";
+    link.click();
+  };
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [cartCount] = useState(3);
@@ -336,7 +299,6 @@ export default function Navbar() {
               ? "bg-[#FAF7F2] border-b border-[#E8E4E0] shadow-[0_2px_16px_rgba(0,0,0,0.07)]"
               : "bg-[#FCFAF7] border-b border-[#D4CFC8] shadow-none"
           }`}
-        
       >
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-6">
           {/* ── Brand ── */}
@@ -344,7 +306,7 @@ export default function Navbar() {
             href="/"
             className="no-underline flex items-center gap-2.5 flex-shrink-0"
           >
-           <div className="w-[100px] h-[50px] relative">
+            <div className="w-[100px] h-[50px] relative">
               <Image
                 src="/assets/Images/logo/rubberindia_logo.png"
                 alt="rubberIndia"
@@ -391,20 +353,18 @@ export default function Navbar() {
             transition={{ delay: 0.4, duration: 0.4 }}
             className="flex items-center gap-2 sm:gap-2.5"
           >
-        
-
             {/* Quote CTA — hidden on xs, shown sm+ */}
             <motion.div className="hidden sm:block" {...springHover}>
-              <Link
-                href="/quote"
+              <button
+                onClick={handleDownload}
                 className="inline-flex items-center gap-1.5 px-3.5 sm:px-[18px] py-2
                   bg-[#AA1E15] text-white rounded-md text-[12px] sm:text-[13px] font-bold
                   no-underline tracking-[0.03em] whitespace-nowrap
                   hover:bg-[#C4261C] transition-colors duration-200 font-poppins"
-               
               >
                 <span className="hidden sm:inline">Download Catalogue</span>
                 <span className="sm:hidden">Quote</span>
+
                 <svg
                   width="12"
                   height="12"
@@ -415,11 +375,33 @@ export default function Navbar() {
                 >
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
-              </Link>
+              </button>
             </motion.div>
 
+            <button
+              className="cursor-pointer"
+              onClick={handleDownload}
+              style={{ transition: "opacity 0.2s ease" }}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.6")}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+            >
+              <svg
+                width="25"
+                height="25"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#272362"
+                strokeWidth="2.5"
+              >
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="8" y1="13" x2="16" y2="13" />
+                <line x1="8" y1="17" x2="16" y2="17" />
+                <line x1="8" y1="9" x2="10" y2="9" />
+              </svg>
+            </button>
+
             {/* Cart */}
-            <CartBtn count={cartCount} />
 
             {/* Hamburger — md and below */}
             <div className="flex md:hidden">

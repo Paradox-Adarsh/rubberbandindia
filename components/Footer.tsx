@@ -59,20 +59,34 @@ function ElasticBand() {
           opacity="0.55"
           transition={{ type: "spring", stiffness: 180, damping: 16 }}
         />
-        <motion.text
-          x="600"
-          y={stretched ? 28 : 11}
+        <defs>
+          <motion.path
+            id="bandCurve"
+            d={
+              stretched ? "M 10 26 Q 600 58 1190 26" : "M 10 8 Q 600 18 1190 8"
+            }
+            fill="none"
+            animate={{
+              d: stretched
+                ? "M 10 26 Q 600 70 1190 26"
+                : "M 10 8 Q 600 18 1190 8",
+            }}
+            transition={{ type: "spring", stiffness: 180, damping: 16 }}
+          />
+        </defs>
+
+        <text
           textAnchor="middle"
           fontSize="6"
           fontFamily="Arial, Helvetica, sans-serif"
           letterSpacing="3.5"
           fill="#F5F0E8"
           opacity="0.9"
-          animate={{ y: stretched ? 28 : 11 }}
-          transition={{ type: "spring", stiffness: 180, damping: 16 }}
         >
-          GHANSHYAM ENTERPRISES · QUALITY RUBBER BANDS · SINCE 2001
-        </motion.text>
+          <textPath href="#bandCurve" startOffset="50%">
+            GHANSHYAM ENTERPRISES · QUALITY RUBBER BANDS · SINCE 2001
+          </textPath>
+        </text>
       </motion.svg>
 
       <AnimatePresence>
@@ -82,7 +96,10 @@ function ElasticBand() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             className="absolute -top-4 left-1/2 -translate-x-1/2 text-[9px] tracking-widest whitespace-nowrap pointer-events-none"
-            style={{ color: "#AA1E15", fontFamily: "Arial, Helvetica, sans-serif" }}
+            style={{
+              color: "#AA1E15",
+              fontFamily: "Arial, Helvetica, sans-serif",
+            }}
           >
             ↑ SNAP ↑
           </motion.span>
@@ -101,9 +118,31 @@ function BandRing({ size = 80, delay = 0 }: { size?: number; delay?: number }) {
       style={{ animationDelay: `${delay}s` }}
       className="absolute pointer-events-none"
     >
-      <svg width={size} height={size} viewBox="0 0 80 80" style={{ opacity: 0.07 }}>
-        <ellipse cx="40" cy="40" rx="36" ry="14" stroke="#AA1E15" strokeWidth="8" fill="none" />
-        <ellipse cx="40" cy="40" rx="36" ry="14" stroke="#1A1A1A" strokeWidth="3" fill="none" strokeDasharray="5 5" />
+      <svg
+        width={size}
+        height={size}
+        viewBox="0 0 80 80"
+        style={{ opacity: 0.07 }}
+      >
+        <ellipse
+          cx="40"
+          cy="40"
+          rx="36"
+          ry="14"
+          stroke="#AA1E15"
+          strokeWidth="8"
+          fill="none"
+        />
+        <ellipse
+          cx="40"
+          cy="40"
+          rx="36"
+          ry="14"
+          stroke="#1A1A1A"
+          strokeWidth="3"
+          fill="none"
+          strokeDasharray="5 5"
+        />
       </svg>
     </motion.div>
   );
@@ -111,8 +150,16 @@ function BandRing({ size = 80, delay = 0 }: { size?: number; delay?: number }) {
 
 /* ─── Contact Link ───────────────────────────────────────────────────── */
 function ContactLink({
-  icon, label, href, delay = 0,
-}: { icon: React.ReactNode; label: string; href?: string; delay?: number }) {
+  icon,
+  label,
+  href,
+  delay = 0,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  href?: string;
+  delay?: number;
+}) {
   const Tag = href ? motion.a : motion.div;
   return (
     <Tag
@@ -183,14 +230,15 @@ export default function Footer() {
       className="relative overflow-hidden"
       style={{
         backgroundColor: "#FAF7F2",
-       fontFamily: "Poppins, Arial, Helvetica, sans-serif",
+        fontFamily: "Poppins, Arial, Helvetica, sans-serif",
       }}
     >
       {/* Dot texture */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{
-          backgroundImage: "radial-gradient(circle, #AA1E15 1px, transparent 1px)",
+          backgroundImage:
+            "radial-gradient(circle, #AA1E15 1px, transparent 1px)",
           backgroundSize: "28px 28px",
         }}
       />
@@ -202,7 +250,8 @@ export default function Footer() {
           width: 280,
           height: 280,
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(170,30,21,0.05) 0%, transparent 70%)",
+          background:
+            "radial-gradient(circle, rgba(170,30,21,0.05) 0%, transparent 70%)",
           bottom: "-10%",
           left: "-5%",
           filter: "blur(30px)",
@@ -227,10 +276,9 @@ export default function Footer() {
         variants={staggerContainer}
         initial="hidden"
         animate={inView ? "show" : "hidden"}
-        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-0"
+        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6"
       >
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
-
           {/* ── Brand Column ── */}
           <motion.div variants={fadeUpVariant} className="md:col-span-5">
             <div className="flex flex-wrap items-center gap-2 mb-3">
@@ -251,10 +299,12 @@ export default function Footer() {
             </div>
 
             <motion.h2
-              {...(scaleIn as object)}
-              animate={inView ? "animate" : "initial"}
+              variants={fadeUpVariant}
               className="text-xl sm:text-2xl font-black tracking-tight leading-tight"
-              style={{ color: "#1A1A1A", fontFamily: "Arial, Helvetica, sans-serif" }}
+              style={{
+                color: "#1A1A1A",
+                fontFamily: "Arial, Helvetica, sans-serif",
+              }}
             >
               Durable rubber bands
               <br />
@@ -273,9 +323,7 @@ export default function Footer() {
 
             {/* Stats */}
             <motion.div
-              {...(fadeIn as object)}
-              animate={inView ? "animate" : "initial"}
-              transition={{ delay: 0.4 }}
+              variants={fadeUpVariant}
               className="mt-4 flex items-center gap-6"
             >
               {[
@@ -283,36 +331,50 @@ export default function Footer() {
                 { num: "500+", label: "Enterprise customers" },
               ].map(({ num, label }) => (
                 <div key={num}>
-                  <p className="text-lg font-black" style={{ color: "#1A1A1A" }}>{num}</p>
-                  <p className="text-xs mt-0.5" style={{ color: "#9B9590" }}>{label}</p>
+                  <p
+                    className="text-lg font-black"
+                    style={{ color: "#1A1A1A" }}
+                  >
+                    {num}
+                  </p>
+                  <p className="text-xs mt-0.5" style={{ color: "#9B9590" }}>
+                    {label}
+                  </p>
                 </div>
               ))}
             </motion.div>
 
             {/* Band size bars */}
             <motion.div
-              {...(fadeIn as object)}
-              animate={inView ? "animate" : "initial"}
-              transition={{ delay: 0.55 }}
+              variants={fadeUpVariant}
               className="mt-4 flex gap-1.5 items-end"
               aria-hidden
             >
-              {["#E8DDD0", "#D4C4B0", "#C09878", "#AA1E15", "#1A1A1A"].map((color, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ scaleY: 0 }}
-                  animate={inView ? { scaleY: 1 } : {}}
-                  transition={{ delay: 0.35 + i * 0.07, duration: 0.35, ease: "easeOut" }}
-                  style={{
-                    width: 6 + i * 3,
-                    height: 10 + i * 3,
-                    backgroundColor: color,
-                    borderRadius: 3,
-                    transformOrigin: "bottom",
-                  }}
-                />
-              ))}
-              <span className="ml-2 text-[9px] tracking-widest self-center" style={{ color: "#9B9590" }}>
+              {["#E8DDD0", "#D4C4B0", "#C09878", "#AA1E15", "#1A1A1A"].map(
+                (color, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ scaleY: 0 }}
+                    animate={inView ? { scaleY: 1 } : {}}
+                    transition={{
+                      delay: 0.35 + i * 0.07,
+                      duration: 0.35,
+                      ease: "easeOut",
+                    }}
+                    style={{
+                      width: 6 + i * 3,
+                      height: 10 + i * 3,
+                      backgroundColor: color,
+                      borderRadius: 3,
+                      transformOrigin: "bottom",
+                    }}
+                  />
+                ),
+              )}
+              <span
+                className="ml-2 text-[9px] tracking-widest self-center"
+                style={{ color: "#9B9590" }}
+              >
                 SIZES AVAILABLE
               </span>
             </motion.div>
@@ -323,8 +385,7 @@ export default function Footer() {
             <SectionHeading>Office Address</SectionHeading>
 
             <motion.div
-              {...(fadeVerticalIn as object)}
-              animate={inView ? "animate" : "initial"}
+              variants={fadeUpVariant}
               className="flex items-start gap-3"
             >
               <span
@@ -339,11 +400,17 @@ export default function Footer() {
               </span>
               <address
                 className="not-italic text-sm leading-6"
-                style={{ color: "#2A2520", fontFamily: "Arial, Helvetica, sans-serif" }}
+                style={{
+                  color: "#2A2520",
+                  fontFamily: "Arial, Helvetica, sans-serif",
+                }}
               >
-                18/20, Kazi Sayeed Street,<br />
-                1st Floor, Room No. 3B,<br />
-                Opp. Silver Moon Hotel,<br />
+                18/20, Kazi Sayeed Street,
+                <br />
+                1st Floor, Room No. 3B,
+                <br />
+                Opp. Silver Moon Hotel,
+                <br />
                 <span style={{ color: "#AA1E15", fontWeight: 700 }}>
                   Masjid Bunder – 400009.
                 </span>
@@ -357,8 +424,27 @@ export default function Footer() {
               transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
             >
               <svg width="40" height="20" viewBox="0 0 52 26" aria-hidden>
-                <ellipse cx="26" cy="13" rx="24" ry="10" stroke="#AA1E15" strokeWidth="4" fill="none" opacity="0.22" />
-                <ellipse cx="26" cy="13" rx="24" ry="10" stroke="#1A1A1A" strokeWidth="2" fill="none" strokeDasharray="4 6" opacity="0.12" />
+                <ellipse
+                  cx="26"
+                  cy="13"
+                  rx="24"
+                  ry="10"
+                  stroke="#AA1E15"
+                  strokeWidth="4"
+                  fill="none"
+                  opacity="0.22"
+                />
+                <ellipse
+                  cx="26"
+                  cy="13"
+                  rx="24"
+                  ry="10"
+                  stroke="#1A1A1A"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeDasharray="4 6"
+                  opacity="0.12"
+                />
               </svg>
             </motion.div>
           </motion.div>
@@ -368,8 +454,16 @@ export default function Footer() {
             <SectionHeading>Contact</SectionHeading>
 
             <div className="space-y-2.5">
-              <ContactLink icon={<Phone size={13} />} label="9820674274" delay={0.1} />
-              <ContactLink icon={<Phone size={13} />} label="7021238502" delay={0.14} />
+              <ContactLink
+                icon={<Phone size={13} />}
+                label="9820674274"
+                delay={0.1}
+              />
+              <ContactLink
+                icon={<Phone size={13} />}
+                label="7021238502"
+                delay={0.14}
+              />
               <ContactLink
                 icon={<Mail size={13} />}
                 label="vijayvagadrubber@gmail.com"
@@ -386,16 +480,17 @@ export default function Footer() {
 
             {/* CTA buttons */}
             <motion.div
-              {...(fadeIn as object)}
-              animate={inView ? "animate" : "initial"}
-              transition={{ delay: 0.5 }}
+              variants={fadeUpVariant}
               className="mt-5 flex flex-wrap items-center gap-2.5"
             >
               <motion.a
                 href="/products"
                 {...springHover}
                 className="px-4 py-2 text-xs font-bold tracking-wide rounded text-white"
-                style={{ backgroundColor: "#AA1E15", fontFamily: "Arial, Helvetica, sans-serif" }}
+                style={{
+                  backgroundColor: "#AA1E15",
+                  fontFamily: "Arial, Helvetica, sans-serif",
+                }}
               >
                 View Products
               </motion.a>
@@ -429,34 +524,47 @@ export default function Footer() {
 
         {/* ── Bottom bar ── */}
         <motion.div
-          {...(fadeUp as object)}
-          animate={inView ? "animate" : "initial"}
-          transition={{ delay: 0.45, duration: 0.5 }}
+          variants={fadeUpVariant}
           className="py-3 flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left"
         >
           <p
             className="text-xs tracking-wide"
-            style={{ color: "#7A7570", fontFamily: "Arial, Helvetica, sans-serif" }}
+            style={{
+              color: "#7A7570",
+              fontFamily: "Arial, Helvetica, sans-serif",
+            }}
           >
-            © {new Date().getFullYear()} Ghanshyam Enterprises. All rights reserved.
+            © {new Date().getFullYear()} Ghanshyam Enterprises. All rights
+            reserved.
           </p>
 
           <div className="flex flex-wrap justify-center sm:justify-end items-center gap-y-1">
-            {["Since 2001", "Quality Assured", "Pan-India Delivery"].map((tag, i) => (
-              <motion.span
-                key={tag}
-                initial={{ opacity: 0 }}
-                animate={inView ? { opacity: 1 } : {}}
-                transition={{ delay: 0.55 + i * 0.08 }}
-                className="text-xs tracking-wide"
-                style={{ color: "#7A7570", fontFamily: "Arial, Helvetica, sans-serif" }}
-              >
-                {tag}
-                {i < 2 && <span className="mx-2 sm:mx-3" style={{ color: "#C4BFB8" }}>·</span>}
-              </motion.span>
-            ))}
+            {["Since 2001", "Quality Assured", "Pan-India Delivery"].map(
+              (tag, i) => (
+                <motion.span
+                  key={tag}
+                  initial={{ opacity: 0 }}
+                  animate={inView ? { opacity: 1 } : {}}
+                  transition={{ delay: 0.55 + i * 0.08 }}
+                  className="text-xs tracking-wide"
+                  style={{
+                    color: "#7A7570",
+                    fontFamily: "Arial, Helvetica, sans-serif",
+                  }}
+                >
+                  {tag}
+                  {i < 2 && (
+                    <span className="mx-2 sm:mx-3" style={{ color: "#C4BFB8" }}>
+                      ·
+                    </span>
+                  )}
+                </motion.span>
+              ),
+            )}
           </div>
         </motion.div>
+
+        {/* ── Copyright strip ── */}
       </motion.div>
     </footer>
   );
