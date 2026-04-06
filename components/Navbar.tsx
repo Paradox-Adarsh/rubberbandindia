@@ -243,6 +243,7 @@ function ScrollProgress() {
   );
 }
 
+
 /* ─── Main Navbar ────────────────────────────────────────────────────── */
 export default function Navbar() {
   const handleDownload = () => {

@@ -65,6 +65,7 @@ function ElasticBand() {
             d={
               stretched ? "M 10 26 Q 600 58 1190 26" : "M 10 8 Q 600 18 1190 8"
             }
+            
             fill="none"
             animate={{
               d: stretched
